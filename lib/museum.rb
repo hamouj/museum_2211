@@ -5,6 +5,7 @@ class Museum
     @name = name
     @exhibits = []
     @patrons = []
+    @lottery_contestants = []
   end
 
   def add_exhibit(exhibit)
@@ -37,6 +38,14 @@ class Museum
   end
 
   def ticket_lottery_contestants(exhibit)
-    patrons_by_exhibit_interest[exhibit]
+    @lottery_contestants = patrons_by_exhibit_interest[exhibit].select do |patron|
+      patron.spending_money < exhibit.cost
+    end
+    @lottery_contestants
+  end
+
+  def draw_lottery_winner(exhibit)
+    ticket_lottery_contestants(exhibit)
+    @lottery_contestants.sample
   end
 end
