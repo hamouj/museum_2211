@@ -29,9 +29,7 @@ class Museum
       patrons.each do |patron|
         patron.interests.each do |interest|
           hash[exhibit] << patron if interest == exhibit.name
-            if hash[exhibit].nil?
-              hash[exhibit] = []
-            end
+          hash[exhibit] = [] if hash[exhibit].nil?
         end
       end
     end
