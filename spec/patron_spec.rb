@@ -1,7 +1,7 @@
 require './lib/patron'
 
 describe Patron do
-  let(:patron) {Patron.new("Bob", 20)}
+  let(:patron_1) {Patron.new("Bob", 20)}
 
   describe '#initialize' do
     it 'exists' do
