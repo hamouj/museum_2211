@@ -2,7 +2,7 @@ require 'rspec'
 require './lib/exhibit'
 
 RSpec.describe Exhibit do
-  let(:exhibit) {Exhibit.new({name: "Gems and Minerals", cost: 0}}
+  let(:exhibit) {Exhibit.new({name: "Gems and Minerals", cost: 0})}
 
   describe '#initialize' do
     it 'exists' do
