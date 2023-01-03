@@ -9,6 +9,7 @@ describe Museum do
   let(:imax) {Exhibit.new({name: "IMAX",cost: 15})}
   let(:patron_1) {Patron.new("Bob", 20)}
   let(:patron_2) {Patron.new("Sally", 20)}
+  let(:patron_3) {Patron.new("Johnny", 5)}
 
   describe '#initialize' do
     it 'exists' do
@@ -44,6 +45,26 @@ describe Museum do
 
       expect(dmns.recommend_exhibits(patron_1)).to eq([dead_sea_scrolls, gems_and_minerals])
       expect(dmns.recommend_exhibits(patron_2)).to eq([imax])
+    end
+  end
+
+  describe '#admit' do
+    before(:each) do
+      dmns.add_exhibit(gems_and_minerals)
+      dmns.add_exhibit(dead_sea_scrolls)
+      dmns.add_exhibit(imax)
+      patron_1.add_interest("Gems and Minerals")
+      patron_1.add_interest("Dead Sea Scrolls")
+      patron_2.add_interest("Dead Sea Scrolls")
+      patron_3.add_interest("Dead Sea Scrolls")
+    end
+
+    it 'lists patrons who have been admitted to the museum' do
+      dmns.admit(patron_1)
+      dmns.admit(patron_2)
+      dmns.admit(patron_3)
+      
+      expect(dmns.patrons).to eq([patron_1, patron_2, patron_3])
     end
   end
 end
