@@ -137,10 +137,32 @@ describe Museum do
       patron_3.add_interest("Dead Sea Scrolls")
     end
 
-    it 'names a winner' do
-      allow(dmns).to receive(:lottery_contestants).and_return(@patron_1)
+    it 'picks a winner' do
 
-      expect(dmns.draw_lottery_winner(dead_sea_scrolls)).to eq(@patron_1)
+      expect([@patron_1, patron_3]).to include(dmns.draw_lottery_winner(dead_sea_scrolls))
+      expect(dmns.draw_lottery_winner(gems_and_minerals)).to eq(nil)
+    end
+  end
+
+  describe '#announce_lottery_winner(exhibit' do
+    before(:each) do
+      dmns.add_exhibit(gems_and_minerals)
+      dmns.add_exhibit(dead_sea_scrolls)
+      dmns.add_exhibit(imax)
+
+      @patron_1 = Patron.new("Bob", 0)
+      dmns.admit(@patron_1)
+      dmns.admit(patron_2)
+      dmns.admit(patron_3)
+
+      @patron_1.add_interest("Gems and Minerals")
+      @patron_1.add_interest("Dead Sea Scrolls")
+      patron_2.add_interest("Dead Sea Scrolls")
+      patron_3.add_interest("Dead Sea Scrolls")
+    end
+
+    it 'announces the winner' do
+
     end
   end
 end
