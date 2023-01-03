@@ -91,4 +91,23 @@ describe Museum do
       expect(dmns.patrons_by_exhibit_interest).to eq(expected_hash)
     end
   end
+
+  describe '#ticket_lottery_contestants(exhibit)' do    
+    before(:each) do
+      dmns.add_exhibit(gems_and_minerals)
+      dmns.add_exhibit(dead_sea_scrolls)
+      dmns.add_exhibit(imax)
+      dmns.admit(patron_1)
+      dmns.admit(patron_2)
+      dmns.admit(patron_3)
+      patron_1.add_interest("Gems and Minerals")
+      patron_1.add_interest("Dead Sea Scrolls")
+      patron_2.add_interest("Dead Sea Scrolls")
+      patron_3.add_interest("Dead Sea Scrolls")
+    end
+
+    it 'lists lottery contests by exhibit' do
+      expect(dmns.ticket_lottery_contestants(dead_sea_scrolls)).to eq([patron_1, patron_2, patron_3])
+    end
+  end
 end
