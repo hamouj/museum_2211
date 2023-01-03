@@ -35,4 +35,8 @@ class Museum
     end
     hash
   end
+
+  def ticket_lottery_contestants(exhibit)
+    patrons_by_exhibit_interest[exhibit]
+  end
 end
