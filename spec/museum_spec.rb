@@ -48,7 +48,7 @@ describe Museum do
     end
   end
 
-  describe '#admit' do
+  describe '#admit(patron)' do
     before(:each) do
       dmns.add_exhibit(gems_and_minerals)
       dmns.add_exhibit(dead_sea_scrolls)
