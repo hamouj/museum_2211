@@ -162,9 +162,13 @@ describe Museum do
     end
 
     it 'announces the winner' do
-      allow(dmns).to receive(:lottery_contestants) and return(@patron_1)
+      allow(dmns).to receive(:winner).and_return(@patron_1)
 
       expect(dmns.announce_lottery_winner(imax)).to eq('Bob has won the IMAX exhibit lottery')
+    end
+    
+    it 'announces no winner when there are no contestants' do
+      dmns.draw_lottery_winner(gems_and_minerals)
       expect(dmns.announce_lottery_winner(gems_and_minerals)).to eq('No winners for this lottery')
     end
   end
