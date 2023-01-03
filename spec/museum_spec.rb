@@ -169,6 +169,7 @@ describe Museum do
     
     it 'announces no winner when there are no contestants' do
       dmns.draw_lottery_winner(gems_and_minerals)
+      
       expect(dmns.announce_lottery_winner(gems_and_minerals)).to eq('No winners for this lottery')
     end
   end
